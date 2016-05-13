@@ -1,35 +1,72 @@
-<p id="notice"><%= notice %></p>
-
-<h2><%= @post.title %></h2>
-
-<p><%= @post.body %></p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
-
-<h3>Comments </h3>
-<%= render @post.comments %>
-
-
-
-<br>
-
-<h4>New Comment</h4>
-
-<%= form_for [@post, @post.comments.build] do |f| %>
-  <div class="field">
-    <%= f.label :author %>
-    <br>
-    <%= f.text_field :author %>
+<header class="intro-header" style="background-image: url('/img/post-bg.jpg')">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <h1>
+            <%= @post.title %>
+          </h1>
+          <% if defined? @post.subtitle %>
+            <h2 class="subheading">
+              <%= @post.subtitle %>
+            </h2>
+          <% end %>
+          <span class="meta">
+            Posted by <a href="#">James</a> on <%= friendly_date @post.created_at %>
+          </span>
+        </div>
+      </div>
+    </div>
   </div>
+  
+</header>
 
-  <div class="field">
-    <%= f.label :body %>
-    <br>
-    <%= f.text_area :body %>
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p><%= @post.body %></p>
+      </div>
+    </div>
   </div>
+</article>
 
-  <div class="actions">
-    <%= f.submit %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <p id="notice"><%= notice %></p>
+
+      <%= link_to 'Edit', edit_post_path(@post) %> |
+      <%= link_to 'Back', posts_path %>
+
+      <h3>Comments </h3>
+      <%= render @post.comments %>
+
+
+
+      <br>
+
+      <h4>New Comment</h4>
+
+      <%= form_for [@post, @post.comments.build] do |f| %>
+        <div class="field">
+          <%= f.label :author %>
+          <br>
+          <%= f.text_field :author %>
+        </div>
+
+        <div class="field">
+          <%= f.label :body %>
+          <br>
+          <%= f.text_area :body %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
+
+      
